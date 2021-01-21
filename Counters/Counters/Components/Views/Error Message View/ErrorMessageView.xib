@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ErrorMessageView" customModule="Counters" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="226"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4Dg-ju-5F3">
+                    <rect key="frame" x="32" y="16" width="311" height="194"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Message Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vf-U2-Kfy">
+                            <rect key="frame" x="89.5" y="0.0" width="132.5" height="28"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <nil key="textColor"/>
+                            <color key="highlightedColor" systemColor="labelColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bG2-kj-ufe">
+                            <rect key="frame" x="4.5" y="48" width="302.5" height="91"/>
+                            <string key="text">“When I started counting my blessings, my whole life turned around.” —Willie Nelson
+</string>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <color key="textColor" name="darkSilver"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-SV-C2X" customClass="RoundedButton" customModule="Counters" customModuleProvider="target">
+                            <rect key="frame" x="133.5" y="159" width="44" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="s2Z-LE-Pza"/>
+                            </constraints>
+                            <state key="normal" title="Action"/>
+                            <connections>
+                                <action selector="buttonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="B1o-To-scL"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="4Dg-ju-5F3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Ki6-yp-O06"/>
+                <constraint firstItem="4Dg-ju-5F3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="brm-Xe-JjN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4Dg-ju-5F3" secondAttribute="bottom" id="cUR-sv-g8c"/>
+                <constraint firstItem="4Dg-ju-5F3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="top" id="jiH-ra-qtf"/>
+                <constraint firstAttribute="trailing" secondItem="4Dg-ju-5F3" secondAttribute="trailing" constant="32" id="qh6-um-S96"/>
+            </constraints>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="button" destination="5fh-SV-C2X" id="8FY-5W-xwf"/>
+                <outlet property="messageLabel" destination="bG2-kj-ufe" id="HRD-A7-J4D"/>
+                <outlet property="titleLabel" destination="8vf-U2-Kfy" id="oxo-Qi-q1h"/>
+            </connections>
+            <point key="canvasLocation" x="344.80000000000001" y="-115.14242878560721"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="5fh-SV-C2X">
+            <size key="intrinsicContentSize" width="44" height="30"/>
+        </designable>
+    </designables>
+    <resources>
+        <namedColor name="darkSilver">
+            <color red="0.53299999237060547" green="0.54500001668930054" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

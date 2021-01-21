@@ -21,6 +21,12 @@ class Colors {
 
     static public let subtitleMediumGray = UIColor(named: "subtitleMediumGray") // 4A4A4A  // welcome subheader
 
+    static public let countersBackground = UIColor(named: "countersBackground") // EDEDED
     
+    static public let navBarGray = UIColor(named: "navBarGray") // F7F7F7
+
+    static public let darkSilver = UIColor(named: "darkSilver") // 888B90
+
+
 }
 
