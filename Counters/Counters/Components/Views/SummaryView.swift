@@ -69,7 +69,7 @@ class SummaryView: UIView {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 8
+        stackView.spacing = 7
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.setContentCompressionResistancePriority(.required, for: .horizontal)
         return stackView
@@ -92,7 +92,7 @@ class SummaryView: UIView {
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.alignment = .top
-        stackView.spacing = 16
+        stackView.spacing = 15
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.setContentHuggingPriority(.required, for: .vertical)
         return stackView
