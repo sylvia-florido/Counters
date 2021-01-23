@@ -35,6 +35,11 @@ class CountersRouter: CountersRouterProtocol {
     }
     
     func showCountersListScene() {
-        print("Show list")
+        let controller = CountersListViewController()
+        let presenter = CountersListPresenter(with: controller)
+        let interactor = CountersListInteractor(with: presenter, repository: repository)
+        controller.interactor = interactor
+        controller.router = self
+        navigationController.pushViewController(controller, animated: true)
     }
 }

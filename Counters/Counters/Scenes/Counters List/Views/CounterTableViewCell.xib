@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="113" id="KGk-i7-Jjw" customClass="CounterTableViewCell" customModule="Counters" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="LfR-9w-Q1S">
+                        <rect key="frame" x="12" y="16" width="351" height="96"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOw-T3-dEo">
+                                <rect key="frame" x="4" y="37" width="22" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="UWZ-Yx-hdD"/>
+                                    <constraint firstAttribute="height" constant="22" id="ltv-Jr-czF"/>
+                                </constraints>
+                                <state key="normal" image="icon_checkUnselected"/>
+                                <state key="selected" image="icon_checkSelected"/>
+                                <connections>
+                                    <action selector="selectionButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lD1-G0-z2U"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgz-xs-jGB" customClass="BaseView" customModule="Counters" customModuleProvider="target">
+                                <rect key="frame" x="39" y="0.0" width="308" height="96"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSt-C3-1kY" userLabel="separator">
+                                        <rect key="frame" x="59.5" y="0.0" width="2" height="96"/>
+                                        <color key="backgroundColor" name="countersListBackground"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="2" id="X0d-zm-8UW"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Counter Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxz-wX-4qp">
+                                        <rect key="frame" x="71.5" y="16" width="220.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pIA-p4-62J">
+                                        <rect key="frame" x="10" y="12" width="39.5" height="20"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="17"/>
+                                        <color key="textColor" name="accentMainColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="wjr-cY-CCI">
+                                        <rect key="frame" x="194" y="53" width="100" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="1fe-Hj-29B"/>
+                                            <constraint firstAttribute="width" constant="100" id="dnb-3p-HYH"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="stepper:" destination="KGk-i7-Jjw" eventType="valueChanged" id="kci-b4-PhJ"/>
+                                        </connections>
+                                    </stepper>
+                                </subviews>
+                                <color key="backgroundColor" name="countersCellBackground"/>
+                                <constraints>
+                                    <constraint firstItem="pIA-p4-62J" firstAttribute="leading" secondItem="dgz-xs-jGB" secondAttribute="leading" constant="10" id="3rz-ZI-gJn"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="96" id="8p6-i3-aeW"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uxz-wX-4qp" secondAttribute="trailing" constant="16" id="9DA-eg-6QE"/>
+                                    <constraint firstItem="WSt-C3-1kY" firstAttribute="leading" secondItem="pIA-p4-62J" secondAttribute="trailing" constant="10" id="B8h-nw-Qav"/>
+                                    <constraint firstItem="Uxz-wX-4qp" firstAttribute="top" secondItem="dgz-xs-jGB" secondAttribute="top" constant="16" id="CN3-99-fE0"/>
+                                    <constraint firstItem="pIA-p4-62J" firstAttribute="top" secondItem="Uxz-wX-4qp" secondAttribute="top" constant="-4" id="Wk1-oW-aTf"/>
+                                    <constraint firstItem="WSt-C3-1kY" firstAttribute="top" secondItem="dgz-xs-jGB" secondAttribute="top" id="aTa-eb-XEs"/>
+                                    <constraint firstItem="Uxz-wX-4qp" firstAttribute="leading" secondItem="WSt-C3-1kY" secondAttribute="trailing" constant="10" id="bhO-il-hQx"/>
+                                    <constraint firstItem="wjr-cY-CCI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Uxz-wX-4qp" secondAttribute="bottom" constant="8" id="d7h-XN-hVU"/>
+                                    <constraint firstItem="WSt-C3-1kY" firstAttribute="leading" secondItem="dgz-xs-jGB" secondAttribute="leading" constant="59.5" id="flh-0e-Zzw"/>
+                                    <constraint firstAttribute="bottom" secondItem="wjr-cY-CCI" secondAttribute="bottom" constant="14" id="gvZ-DL-FPC"/>
+                                    <constraint firstAttribute="bottom" secondItem="WSt-C3-1kY" secondAttribute="bottom" id="yUL-AX-W67"/>
+                                    <constraint firstAttribute="trailing" secondItem="wjr-cY-CCI" secondAttribute="trailing" constant="14" id="zmI-rZ-9BS"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <edgeInsets key="layoutMargins" top="0.0" left="4" bottom="0.0" right="4"/>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="LfR-9w-Q1S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="6oG-Io-Fad"/>
+                    <constraint firstAttribute="bottom" secondItem="LfR-9w-Q1S" secondAttribute="bottom" id="KPG-zV-FAT"/>
+                    <constraint firstAttribute="trailing" secondItem="LfR-9w-Q1S" secondAttribute="trailing" constant="12" id="Smj-v7-WTr"/>
+                    <constraint firstItem="LfR-9w-Q1S" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="lKk-tL-DF2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="selectionButton" destination="NOw-T3-dEo" id="yjZ-4h-egK"/>
+                <outlet property="stackView" destination="LfR-9w-Q1S" id="b5a-CS-a91"/>
+                <outlet property="stepper" destination="wjr-cY-CCI" id="tFd-7P-W80"/>
+                <outlet property="titleLabel" destination="Uxz-wX-4qp" id="M9L-1T-Lf1"/>
+                <outlet property="valueLabel" destination="pIA-p4-62J" id="n1T-t2-c2a"/>
+            </connections>
+            <point key="canvasLocation" x="171.73913043478262" y="78.013392857142847"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_checkSelected" width="22" height="22"/>
+        <image name="icon_checkUnselected" width="22" height="22"/>
+        <namedColor name="accentMainColor">
+            <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="countersCellBackground">
+            <color red="0.99199998378753662" green="0.99199998378753662" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="countersListBackground">
+            <color red="0.92900002002716064" green="0.92900002002716064" blue="0.92900002002716064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

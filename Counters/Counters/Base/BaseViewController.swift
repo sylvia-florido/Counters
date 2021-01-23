@@ -10,7 +10,7 @@ import UIKit
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colors.countersBackground
+        view.backgroundColor = Colors.countersListBackground
         setupNavBars()
     }
     
@@ -33,7 +33,7 @@ class BaseViewController: UIViewController {
         navigationController?.toolbar.standardAppearance = appearanceToolBar
         navigationController?.toolbar.compactAppearance = appearanceToolBar
 
-        
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
 }

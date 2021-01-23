@@ -9,7 +9,7 @@ import UIKit
 
 class Colors {
 
-    static public let accentMainColor = UIColor.systemOrange // #colorLiteral(red: 1, green: 0.5843137255, blue: 0, alpha: 1) // system orange
+    static public let accentMainColor = UIColor(named: "accentMainColor")//systemOrange // #colorLiteral(red: 1, green: 0.5843137255, blue: 0, alpha: 1) // system orange
     
     static public let counterRed = UIColor.systemRed//#colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1) // system red
     
@@ -21,7 +21,13 @@ class Colors {
 
     static public let subtitleMediumGray = UIColor(named: "subtitleMediumGray") // 4A4A4A  // welcome subheader
 
-    static public let countersBackground = UIColor(named: "countersBackground") // EDEDED
+    static public let countersListBackground = UIColor(named: "countersListBackground") // EDEDED
+    
+    static public let countersCellBackground = UIColor(named: "countersCellBackground") // FDFDFD
+    
+    static public let countersCellSegment = UIColor(named: "countersCellSegment") // C4C4C4
+    
+    static public let countersCellSeparator = UIColor(named: "countersCellSeparator") // 767680/12
     
     static public let navBarGray = UIColor(named: "navBarGray") // F7F7F7
 

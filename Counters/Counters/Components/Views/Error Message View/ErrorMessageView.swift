@@ -42,6 +42,8 @@ class ErrorMessageView: UIView, NibInstantiable {
             self.titleLabel.text = viewModel.title
             self.messageLabel.text = viewModel.message
             self.button.setTitle(viewModel.buttonTittle, for: .normal)
+            titleLabel.isHidden = false
+            button.isHidden = false
         case .warning(let message):
             messageLabel.text = message
             titleLabel.isHidden = true
