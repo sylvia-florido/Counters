@@ -11,8 +11,9 @@ protocol CountersListViewControllerProtocol: class {
     func displayLoading(_ visible: Bool)
     func displayError(_ viewModel: ErrorMessageViewModel)
     func displayList(_ viewModel: [CountersCellViewModel])
-    func displayListToolBar(_ viewModel: ToolBarViewModel)
+    func displayListToolBar(title: String)
     func displayEditToolbar()
+    func switchDisplayMode(editing: Bool)
 }
 
 class CountersListViewController: BaseViewController, UISearchResultsUpdating, CountersListViewControllerProtocol {
@@ -68,12 +69,8 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = editButtonItem
-        
-        navigationController?.toolbar.tintColor = Colors.accentMainColor
         navigationController?.isToolbarHidden = false
         toolbarItems = customToolBar.items
-
-        edgesForExtendedLayout = UIRectEdge(arrayLiteral: [])
     }
     
     private func setupView() {
@@ -95,20 +92,12 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
     
    
     
-    
     //MARK: - Edit Feature
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        interactor?.didEnterEditMode()
-        if editing == true {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select All", style: .plain, target: self, action: #selector(selectAllPressed(_:)))
-            listView.tableView.setEditing(true, animated: true)
-        } else {
-            navigationItem.rightBarButtonItem = nil
-            listView.tableView.setEditing(false, animated: true)
-        }
+        interactor?.didSwitchEditMode(editing: editing)
     }
-    
+
     @objc func selectAllPressed(_ sender: Any?) {
         interactor?.selectAllCounters()
     }
@@ -156,22 +145,33 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
         showView(listView)
     }
     
+    // MARK: - Edit Mode
+    func switchDisplayMode(editing: Bool) {
+        if editing == true {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select All", style: .plain, target: self, action: #selector(selectAllPressed(_:)))
+            listView.tableView.setEditing(true, animated: true)
+        } else {
+            navigationItem.rightBarButtonItem = nil
+            listView.tableView.setEditing(false, animated: true)
+        }
+    }
+    
     // MARK: - Toolbar
-    func displayListToolBar(_ viewModel: ToolBarViewModel) {
-        customToolBar.toolbarTitle = viewModel.toolbarTitle
-        customToolBar.toolbarState = .add(title: viewModel.toolbarTitle, rightAction: {
-            // add
+    func displayListToolBar(title: String) {
+        customToolBar.toolbarState = .add(viewModel: ToolBarViewModel(toolbarTitle: title, leftAction: nil, righttAction: {
+            //  ADD
             print("Add")
-        })
+        }))
     }
     func displayEditToolbar() {
-        customToolBar.toolbarState = .edit(leftAction: {
-            // delete
+        customToolBar.toolbarState = .edit(viewModel: ToolBarViewModel(toolbarTitle: nil, leftAction: { [weak self] in
             print("Delete")
-        }, rightAction: {
+            self?.interactor?.deleteSelectedCounters()
+        }, righttAction: {
             // share
             print("Share")
-        })
+        }))
+            
     }
     
 }

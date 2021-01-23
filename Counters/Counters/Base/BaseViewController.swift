@@ -29,10 +29,14 @@ class BaseViewController: UIViewController {
         
         let appearanceToolBar = UIToolbarAppearance()
         appearanceToolBar.backgroundColor = Colors.navBarGray
+        appearanceToolBar.backgroundImageContentMode = .scaleAspectFit
         
         navigationController?.toolbar.standardAppearance = appearanceToolBar
         navigationController?.toolbar.compactAppearance = appearanceToolBar
 
+        navigationController?.toolbar.tintColor = Colors.accentMainColor
+
+        edgesForExtendedLayout = UIRectEdge(arrayLiteral: [])
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     

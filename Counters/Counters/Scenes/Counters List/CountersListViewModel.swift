@@ -8,7 +8,9 @@
 import Foundation
 
 //struct CountersListViewModel {
-//    let items: [CountersCellViewModel]
+//    let viewTitle: String
+//    let leftButtonTitle: String
+//    let leftButtonStatus: ButtonState
 //}
 
 struct CountersCellViewModel {
@@ -18,5 +20,22 @@ struct CountersCellViewModel {
 }
 
 struct ToolBarViewModel {
-    let toolbarTitle: String
+    let toolbarTitle: String?
+    let leftAction: (() -> Void)?
+    let righttAction: (() -> Void)?
 }
+
+//enum ButtonState {
+//    case enabled
+//    case disabled
+//    case hidden
+//}
+
+
+//enum NavBarStyle {
+//    case listModeEnabled(leftButtonTitle: String, viewTitle: String)
+//    case listModeDisabled
+//    case editMode
+//}
+
+

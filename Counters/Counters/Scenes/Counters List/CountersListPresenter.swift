@@ -13,6 +13,8 @@ protocol CountersListPresenterProtocol {
     func presentList(_ model: [Counter])
     func presentListToolBar(countersCount: Int?, countersSum: Int?)
     func presentEditToolbar()
+    func presentDisplayMode(editing: Bool)
+
 }
 
 class CountersListPresenter: CountersListPresenterProtocol {
@@ -39,17 +41,19 @@ class CountersListPresenter: CountersListPresenterProtocol {
     
     func presentListToolBar(countersCount: Int? = nil, countersSum: Int? = nil) {
         guard let count = countersCount, let sum = countersSum else {
-            controller?.displayListToolBar(ToolBarViewModel(toolbarTitle: ""))
+            controller?.displayListToolBar(title: " ")
             return
         }
         let itemText = count < 2 ? "item" : "items"
         let title = "\(count) \(itemText) · Counted \(sum) times"
-        let viewModel = ToolBarViewModel(toolbarTitle: title)
-        controller?.displayListToolBar(viewModel)
+        controller?.displayListToolBar(title: title)
     }
     
     func presentEditToolbar() {
         controller?.displayEditToolbar()
     }
     
+    func presentDisplayMode(editing: Bool) {
+        controller?.switchDisplayMode(editing: editing)
+    }
 }

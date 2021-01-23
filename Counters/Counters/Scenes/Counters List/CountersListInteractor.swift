@@ -11,7 +11,9 @@ protocol CountersListInteractorProtocol {
     func start()
     func didPressErrorButton()
     func didPullToRefresh()
-    func didEnterEditMode()
+//    func didEnterEditMode()
+//    func didLeaveEditingMode()
+    func didSwitchEditMode(editing: Bool)
     func didChangeCounter(_ value: Int, at item: Int)
     func didSelectCounter(_ at: Int)
     func selectAllCounters()
@@ -39,10 +41,8 @@ class CountersListInteractor: CountersListInteractorProtocol {
     func updateState(from: CounterState, to: CounterState) {
         switch listState {
         case .loading:
-            // show loading screen
             presenter.presentListToolBar()
             presenter.presentLoading(true)
-            // fetch data
             fetchData()
         case .loadingError:
             if from == .loading {
@@ -60,9 +60,13 @@ class CountersListInteractor: CountersListInteractorProtocol {
         case .refreshing:
             fetchData()
         case .hasContent:
-            showCountersList()
+//            showCountersList()
+            presenter.presentDisplayMode(editing: false)
+            presenter.presentList(counters)
+            presenter.presentListToolBar(countersCount: counters.count, countersSum: Counters.sum(counters))
         case .editing:
             presenter.presentEditToolbar()
+            presenter.presentDisplayMode(editing: true)
         case .sharing:
             presenter.presentEditToolbar()
         }
@@ -92,10 +96,10 @@ class CountersListInteractor: CountersListInteractorProtocol {
         listState = .loading
     }
     
-    private func showCountersList() {
-        presenter.presentList(counters)
-        presenter.presentListToolBar(countersCount: counters.count, countersSum: Counters.sum(counters))
-    }
+//    private func showCountersList() {
+//        presenter.presentList(counters)
+//        presenter.presentListToolBar(countersCount: counters.count, countersSum: Counters.sum(counters))
+//    }
     
     func didPressErrorButton() {
         if listState == .loadingError {
@@ -109,9 +113,13 @@ class CountersListInteractor: CountersListInteractorProtocol {
     func didPullToRefresh() {
         listState = .refreshing
     }
-
-    func didEnterEditMode() {
-        listState = .editing
+    
+    func didSwitchEditMode(editing: Bool) {
+        if editing == true {
+            listState = .editing
+        } else {
+            listState = counters.count > 0 ? .hasContent : .noContent
+        }
     }
     
     
@@ -119,23 +127,30 @@ class CountersListInteractor: CountersListInteractorProtocol {
         guard item < counters.count else { return }
         var counter = counters[item]
         counter.count = value
-        showCountersList()
+//        showCountersList()
+        presenter.presentList(counters)
+        presenter.presentListToolBar(countersCount: counters.count, countersSum: Counters.sum(counters))
     }
 
     func didSelectCounter(_ at: Int) {
         guard counters.count > at else { return }
         counters[at].selected.toggle()
-        showCountersList()
+        //        showCountersList()
+        presenter.presentList(counters)
     }
 
     func selectAllCounters() {
         counters.forEach {$0.selected = true}
-        showCountersList()
+//        showCountersList()
+        presenter.presentList(counters)
+
     }
     
     func deleteSelectedCounters() {
         self.counters = counters.filter({ $0.selected == false })
-        showCountersList()
+        presenter.presentList(counters)
+//        listState = counters.count > 0 ? .hasContent : .noContent
+
     }
     
 
