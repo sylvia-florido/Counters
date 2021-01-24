@@ -18,3 +18,14 @@ struct NoContentErrorStrings {
     static let message = "“When I started counting my blessings, my whole life turned around.” —Willie Nelson"
     static let actionTitle = "Create a counter"
 }
+
+
+struct AddCounterStrings {
+    static let textPlaceholder = "Cups of coffee"
+}
+
+
+struct WelcomeStrings {
+    static let title = "Welcome to \nCounters"
+    static let accentTitle = "Counters"
+}

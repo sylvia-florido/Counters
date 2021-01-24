@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController" customModule="Counters" customModuleProvider="target">
             <connections>
+                <outlet property="titleLabel" destination="Qu8-r2-3Ml" id="PeO-KG-Nbe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -132,7 +133,7 @@
     </objects>
     <designables>
         <designable name="6sc-L2-McO">
-            <size key="intrinsicContentSize" width="67" height="30"/>
+            <size key="intrinsicContentSize" width="111" height="53"/>
         </designable>
     </designables>
     <resources>

@@ -8,10 +8,13 @@
 import UIKit
 
 protocol WelcomeViewControllerProtocol: class {
+    func displayTitle(_ title: NSMutableAttributedString)
     func routeToCountersListScene()
 }
 
 class WelcomeViewController: UIViewController, WelcomeViewControllerProtocol {
+    
+    @IBOutlet weak var titleLabel: UILabel!
     
     var interactor: WelcomeInteractorProtocol?
     var router: CountersRouterProtocol?
@@ -20,6 +23,7 @@ class WelcomeViewController: UIViewController, WelcomeViewControllerProtocol {
     // MARK: -  Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor?.viewdidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +43,10 @@ class WelcomeViewController: UIViewController, WelcomeViewControllerProtocol {
     
     
     // MARK: - WelcomeViewControllerProtocol
+    func displayTitle(_ title: NSMutableAttributedString) {
+        titleLabel.attributedText = title
+    }
+
     func routeToCountersListScene() {
         router?.showCountersListScene()
     }

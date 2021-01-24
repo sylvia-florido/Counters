@@ -22,12 +22,12 @@ protocol CountersListInteractorProtocol {
 
 
 class CountersListInteractor: CountersListInteractorProtocol {
-    var presenter: CountersListPresenter
+    var presenter: CountersListPresenterProtocol
     var repository: CountersRepository
     
     var counters: [Counter] = []
     
-    var listState: CounterState = .loading {
+    var listState: CountersListState = .loading {
         didSet {
            updateState(from: oldValue, to: listState)
         }
@@ -38,10 +38,10 @@ class CountersListInteractor: CountersListInteractorProtocol {
         self.repository = repository
     }
     
-    func updateState(from: CounterState, to: CounterState) {
+    func updateState(from: CountersListState, to: CountersListState) {
         switch listState {
         case .loading:
-            presenter.presentListToolBar()
+            presenter.presentListToolBar(countersCount: nil, countersSum: nil)
             presenter.presentLoading(true)
             fetchData()
         case .loadingError:
@@ -52,11 +52,11 @@ class CountersListInteractor: CountersListInteractorProtocol {
             }
             let errorModel = ErrorMessageViewModel(title: LoadingErrorStrings.title, message: LoadingErrorStrings.message, buttonTittle: LoadingErrorStrings.actionTitle)
             presenter.presentError(errorModel)
-            presenter.presentListToolBar()
+            presenter.presentListToolBar(countersCount: nil, countersSum: nil)
         case .noContent:
             let noContentModel = ErrorMessageViewModel(title: NoContentErrorStrings.title, message: NoContentErrorStrings.message, buttonTittle: NoContentErrorStrings.actionTitle)
             presenter.presentError(noContentModel)
-            presenter.presentListToolBar()
+            presenter.presentListToolBar(countersCount: nil, countersSum: nil)
         case .refreshing:
             fetchData()
         case .hasContent:

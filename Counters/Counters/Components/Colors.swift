@@ -21,7 +21,7 @@ class Colors {
 
     static public let subtitleMediumGray = UIColor(named: "subtitleMediumGray") // 4A4A4A  // welcome subheader
 
-    static public let countersListBackground = UIColor(named: "countersListBackground") // EDEDED
+    static public let countersBackground = UIColor(named: "countersBackground") // EDEDED
     
     static public let countersCellBackground = UIColor(named: "countersCellBackground") // FDFDFD
     

@@ -16,7 +16,7 @@ protocol CountersListDelegate: class {
 class CountersListTableView: UIView {
     
     var tableView: UITableView = UITableView(frame: .zero, style: .plain)
-    var listState: CounterState = .loading
+    var listState: CountersListState = .loading
     
     weak var delegate: CountersListDelegate?
     var viewModel: [CountersCellViewModel] = [] {
@@ -45,6 +45,7 @@ class CountersListTableView: UIView {
     
     private func setup() {
         addSubview(tableView)
+        self.tableView.contentInsetAdjustmentBehavior = .never
         tableView.pin(to: self)
         setupTableView()
         self.tableView.addSubview(self.refreshControl)

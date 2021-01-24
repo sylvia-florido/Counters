@@ -57,6 +57,8 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
     //MARK: - Lifecycle e Setup
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Colors.countersBackground
+        
         title = "Counters"
         setupNavBars()
         setupSearch()
@@ -64,10 +66,20 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
         interactor?.start()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+        DispatchQueue.main.async { [weak self] in
+            self?.navigationController?.navigationBar.sizeToFit()
+        }
+        
+//        refresh data
+    }
+    
     override func setupNavBars() {
         super.setupNavBars()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = editButtonItem
         navigationController?.isToolbarHidden = false
         toolbarItems = customToolBar.items
@@ -158,9 +170,10 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
     
     // MARK: - Toolbar
     func displayListToolBar(title: String) {
-        customToolBar.toolbarState = .add(viewModel: ToolBarViewModel(toolbarTitle: title, leftAction: nil, righttAction: {
-            //  ADD
+        customToolBar.toolbarState = .add(viewModel: ToolBarViewModel(toolbarTitle: title, leftAction: nil, righttAction: { [self] in
+            //  ADD  INTERACTOR
             print("Add")
+            router?.showAddCountersScene()
         }))
     }
     func displayEditToolbar() {

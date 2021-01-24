@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CounterState {
+enum CountersListState {
     case loading
     case loadingError
     case noContent
@@ -16,6 +16,11 @@ enum CounterState {
     case hasContent
     case editing
     case sharing
-    
-    
+}
+
+
+enum CounterCreationState {
+    case noContent
+    case content
+    case saving
 }

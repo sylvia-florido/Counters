@@ -8,6 +8,7 @@
 import Foundation
 
 protocol WelcomeInteractorProtocol {
+    func viewdidLoad()
     func continueButtonPressed()
 }
 
@@ -21,6 +22,10 @@ class WelcomeInteractor: WelcomeInteractorProtocol {
     }
     
     // MARK: - WelcomeInteractorProtocol
+    func viewdidLoad() {
+        presenter.presentTitle(WelcomeStrings.title, accentWord: WelcomeStrings.accentTitle)
+    }
+    
     func continueButtonPressed() {
         presenter.presentCountersListScene()
     }
