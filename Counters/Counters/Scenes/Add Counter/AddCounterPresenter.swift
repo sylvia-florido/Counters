@@ -8,10 +8,12 @@
 import Foundation
 
 protocol AddCounterPresenterProtocol {
+    func presentSubtitle(_ text: String, accentText: String)
     func presentPlaceholder(_ text: String)
     func presenterActivityIndicator(_ visible: Bool)
     func presentSaveOption(_ enabled: Bool)
-    func presentCancelAction()
+    func presentCounterListScene(with counter: Counter?)
+    func presentAlert(title: String, message: String, buttonTitle: String)
 }
 
 class AddCounterPresenter: AddCounterPresenterProtocol {
@@ -22,6 +24,12 @@ class AddCounterPresenter: AddCounterPresenterProtocol {
     }
     
     // MARK: - AddCounterPresenterProtocol
+    func presentSubtitle(_ text: String, accentText: String) {
+        let attributedText = text.getAttributedString()
+        attributedText.underLine(subString: accentText)
+        controller?.displaySubtitle(attributedText)
+    }
+    
     func presentPlaceholder(_ text: String) {
         controller?.displayPlaceholder(text)
     }
@@ -34,7 +42,11 @@ class AddCounterPresenter: AddCounterPresenterProtocol {
         controller?.displaySaveOption(enabled)
     }
 
-    func presentCancelAction() {
-        controller?.displayCancelAction()
+    func presentCounterListScene(with counter: Counter?) {
+        controller?.displayCountersListScene(with: counter)
+    }
+    
+    func presentAlert(title: String, message: String, buttonTitle: String) {
+        controller?.displayAlert(title: title, message: message, buttonTitle: buttonTitle)
     }
 }

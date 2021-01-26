@@ -11,7 +11,7 @@ protocol CountersRouterProtocol {
     func start()
     func showWelcomeScene()
     func showCountersListScene()
-    func showAddCountersScene()
+    func showAddCountersScene(with delegate: AddCounterInteractorDelegate)
 }
 
 class CountersRouter: CountersRouterProtocol {
@@ -44,12 +44,13 @@ class CountersRouter: CountersRouterProtocol {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func showAddCountersScene() {
+    func showAddCountersScene(with delegate: AddCounterInteractorDelegate) {
         let controller = AddCounterViewController()
         let presenter = AddCounterPresenter(with: controller)
         let interactor = AddCounterInteractor(with: presenter, repository: repository)
         controller.interactor = interactor
         controller.router = self
+        controller.delegate = delegate
         navigationController.pushViewController(controller, animated: true)
     }
 }

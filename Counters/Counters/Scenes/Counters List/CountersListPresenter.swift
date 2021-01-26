@@ -13,8 +13,9 @@ protocol CountersListPresenterProtocol {
     func presentList(_ model: [Counter])
     func presentListToolBar(countersCount: Int?, countersSum: Int?)
     func presentEditToolbar()
+    func presentEditButton(enabled: Bool)
     func presentDisplayMode(editing: Bool)
-
+    func presentAddCounterScene()
 }
 
 class CountersListPresenter: CountersListPresenterProtocol {
@@ -24,6 +25,7 @@ class CountersListPresenter: CountersListPresenterProtocol {
         self.controller = controller
     }
     
+    // MARK: - Loading & Error Feature
     func presentLoading(_ visible: Bool) {
         controller?.displayLoading(visible)
     }
@@ -32,6 +34,7 @@ class CountersListPresenter: CountersListPresenterProtocol {
         controller?.displayError(viewModel)
     }
     
+    // MARK: - Listing Feature
     func presentList(_ model: [Counter]) {
         let viewModel = model.map { (counter) -> CountersCellViewModel in
             CountersCellViewModel(title: counter.title, value: counter.count, selected: counter.selected)
@@ -49,6 +52,11 @@ class CountersListPresenter: CountersListPresenterProtocol {
         controller?.displayListToolBar(title: title)
     }
     
+    // MARK: - Edit Feature
+    func presentEditButton(enabled: Bool) {
+        controller?.displayEditButton(enabled: enabled)
+    }
+
     func presentEditToolbar() {
         controller?.displayEditToolbar()
     }
@@ -56,4 +64,10 @@ class CountersListPresenter: CountersListPresenterProtocol {
     func presentDisplayMode(editing: Bool) {
         controller?.switchDisplayMode(editing: editing)
     }
+    
+    // MARK: - Add Feature
+    func presentAddCounterScene() {
+        controller?.displayAddCounterScene()
+    }
+
 }

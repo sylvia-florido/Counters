@@ -66,13 +66,9 @@ class CountersListTableView: UIView {
 extension CountersListTableView: UITableViewDelegate, UITableViewDataSource {
     
     fileprivate func setupTableView() {
-//        tableView.bounces = false
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-//        tableView.allowsSelection = false
         tableView.allowsSelectionDuringEditing = false
-//        tableView.allowsMultipleSelection = true
-//        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerCell(CounterTableViewCell.self)

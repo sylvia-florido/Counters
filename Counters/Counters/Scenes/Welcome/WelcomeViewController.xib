@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,17 +18,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1e-6a-EoK">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                     <subviews>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="818" translatesAutoresizingMaskIntoConstraints="NO" id="QLi-G4-jOY" userLabel="Content View">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="860"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="854"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQs-CP-mp8">
-                                    <rect key="frame" x="39" y="30" width="297" height="138.5"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="UQs-CP-mp8">
+                                    <rect key="frame" x="39" y="30" width="297" height="137.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to  Counters" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qu8-r2-3Ml">
                                             <rect key="frame" x="0.0" y="0.0" width="297" height="79"/>
@@ -36,7 +37,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An example app that syncs to a Node.js server running on your Mac." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOA-Ji-iwd">
-                                            <rect key="frame" x="0.0" y="96" width="297" height="42.5"/>
+                                            <rect key="frame" x="0.0" y="95" width="297" height="42.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" name="subtitleMediumGray"/>
                                             <nil key="highlightedColor"/>
@@ -44,7 +45,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="336" placeholderIntrinsicHeight="484.5" axis="vertical" distribution="fillProportionally" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="eyG-9b-akS">
-                                    <rect key="frame" x="39" y="213.5" width="297" height="526.5"/>
+                                    <rect key="frame" x="39" y="207.5" width="297" height="526.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K72-tG-ljy" customClass="SummaryView" customModule="Counters" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="297" height="142"/>
@@ -85,7 +86,7 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sc-L2-McO" customClass="RoundedButton" customModule="Counters" customModuleProvider="target">
-                                    <rect key="frame" x="40" y="780" width="295" height="57"/>
+                                    <rect key="frame" x="40" y="774" width="295" height="57"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="57" id="EiP-LM-Xpt"/>
                                     </constraints>
@@ -104,7 +105,7 @@
                                 <constraint firstItem="6sc-L2-McO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eyG-9b-akS" secondAttribute="bottom" constant="40" id="RfI-z1-jC2"/>
                                 <constraint firstItem="UQs-CP-mp8" firstAttribute="leading" secondItem="QLi-G4-jOY" secondAttribute="leading" constant="39" id="Wyf-hB-CA4"/>
                                 <constraint firstAttribute="trailing" secondItem="6sc-L2-McO" secondAttribute="trailing" constant="40" id="hZ3-CQ-ypP"/>
-                                <constraint firstItem="eyG-9b-akS" firstAttribute="top" secondItem="UQs-CP-mp8" secondAttribute="bottom" constant="45" id="mZC-vA-JLN"/>
+                                <constraint firstItem="eyG-9b-akS" firstAttribute="top" secondItem="UQs-CP-mp8" secondAttribute="bottom" constant="40" id="mZC-vA-JLN"/>
                                 <constraint firstItem="eyG-9b-akS" firstAttribute="leading" secondItem="QLi-G4-jOY" secondAttribute="leading" constant="39" id="pM0-QO-Pqi"/>
                                 <constraint firstItem="UQs-CP-mp8" firstAttribute="top" secondItem="QLi-G4-jOY" secondAttribute="top" constant="30" id="twB-VU-wzF"/>
                             </constraints>
@@ -128,12 +129,13 @@
                 <constraint firstItem="r1e-6a-EoK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cZY-Lr-ev0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="r1e-6a-EoK" secondAttribute="bottom" id="i96-aw-Yk8"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="136.80000000000001" y="34.632683658170919"/>
         </view>
     </objects>
     <designables>
         <designable name="6sc-L2-McO">
-            <size key="intrinsicContentSize" width="111" height="53"/>
+            <size key="intrinsicContentSize" width="67" height="30"/>
         </designable>
     </designables>
     <resources>

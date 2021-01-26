@@ -22,5 +22,5 @@ enum CountersListState {
 enum CounterCreationState {
     case noContent
     case content
-    case saving
+    case saving(title: String)
 }

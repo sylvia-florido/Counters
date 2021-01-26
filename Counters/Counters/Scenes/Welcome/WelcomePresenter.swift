@@ -21,12 +21,10 @@ class WelcomePresenter: WelcomePresenterProtocol {
     
     // MARK: - WelcomePresenterProtocol
     func presentTitle(_ text: String, accentWord: String) {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: Colors.accentMainColor
-        ]
-        let range = (text as NSString).range(of: accentWord)
-        let attributedString = NSMutableAttributedString(string: text)
-        attributedString.addAttributes(attributes, range: range)
+        let attributedString = text.getAttributedString()
+        if let accentColor = Colors.accentMainColor {
+            attributedString.apply(color: accentColor, subString: accentWord)
+        }
         controller?.displayTitle(attributedString)
     }
     

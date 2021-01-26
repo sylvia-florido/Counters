@@ -89,10 +89,10 @@ class CounterBottomToolbar: UIToolbar {
     
     private func updateViews() {
         switch toolbarState {
-        case .add(let viewModel):
+        case .add(_):
             leftButton.alpha = 0
             rightButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        case .edit(let viewModel):
+        case .edit(_):
             leftButton.alpha = 1
             rightButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         }

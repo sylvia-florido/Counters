@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Counter {
+class Counter: Decodable {
     let id: String
     let title: String
     var count: Int

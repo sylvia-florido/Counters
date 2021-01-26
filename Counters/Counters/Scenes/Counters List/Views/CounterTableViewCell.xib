@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -20,15 +21,15 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="LfR-9w-Q1S">
                         <rect key="frame" x="12" y="16" width="351" height="96"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOw-T3-dEo">
+                            <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOw-T3-dEo">
                                 <rect key="frame" x="4" y="37" width="22" height="22"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="UWZ-Yx-hdD"/>
                                     <constraint firstAttribute="height" constant="22" id="ltv-Jr-czF"/>
                                 </constraints>
-                                <state key="normal" image="icon_checkUnselected"/>
-                                <state key="selected" image="icon_checkSelected"/>
+                                <state key="normal" image="icon_check_unselected"/>
+                                <state key="selected" image="icon_check_selected"/>
                                 <connections>
                                     <action selector="selectionButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lD1-G0-z2U"/>
                                 </connections>
@@ -48,7 +49,7 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pIA-p4-62J">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="pIA-p4-62J">
                                         <rect key="frame" x="10" y="12" width="39.5" height="20"/>
                                         <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="17"/>
                                         <color key="textColor" name="accentMainColor"/>
@@ -115,8 +116,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_checkSelected" width="22" height="22"/>
-        <image name="icon_checkUnselected" width="22" height="22"/>
+        <image name="icon_check_selected" width="22" height="22"/>
+        <image name="icon_check_unselected" width="22" height="22"/>
         <namedColor name="accentMainColor">
             <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

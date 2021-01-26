@@ -6,17 +6,25 @@
 //
 
 import UIKit
+
+protocol AddCounterInteractorDelegate: class {
+    func didCreateNew(_ counter: Counter)
+}
+
 protocol AddCounterViewControllerProtocol: class {
+    func displaySubtitle(_ text: NSAttributedString)
     func displayPlaceholder(_ text: String)
     func displayActivityIndicator(_ visible: Bool)
     func displaySaveOption(_ enabled: Bool)
-    func displayCancelAction()
+    func displayCountersListScene(with counter: Counter?)
+    func displayAlert(title: String, message: String, buttonTitle: String)
 }
 
 class AddCounterViewController: BaseViewController, AddCounterViewControllerProtocol {
     var interactor: AddCounterInteractorProtocol?
     var router: CountersRouterProtocol?
-    
+    weak var delegate: AddCounterInteractorDelegate?
+
     @IBOutlet weak var textview: UITextView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -25,6 +33,7 @@ class AddCounterViewController: BaseViewController, AddCounterViewControllerProt
         return true
     }
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.view.backgroundColor = Colors.countersBackground
@@ -35,17 +44,9 @@ class AddCounterViewController: BaseViewController, AddCounterViewControllerProt
         textview.textContainer.maximumNumberOfLines = 5
         textview.textContainer.lineBreakMode = .byTruncatingTail
         interactor?.start()
-        setAttributedText()
     }
-    
-    func setAttributedText() {
-        let text = "Give it a name. Creative block? See examples."
-        let attributedText = text.getAttributedString()
-        //           attributedText.apply(color: .red, subString: "This")
-        //           attributedText.apply(font: UIFont.boldSystemFont(ofSize: 24), subString: "This")
-        attributedText.underLine(subString: "examples")
-        //           attributedText.applyShadow(shadowColor: .black, shadowWidth: 4.0, shadowHeigt: 4.0, shadowRadius: 4.0, subString: "attributedString")
-        subtitleLabel.attributedText = attributedText
+    func displaySubtitle(_ text: NSAttributedString) {
+        subtitleLabel.attributedText = text
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,15 +64,6 @@ class AddCounterViewController: BaseViewController, AddCounterViewControllerProt
         }
     }
     
-    let leftBarButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
-    
-    let rightBarButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveAction))
-        button.setTitleTextAttributes([NSAttributedString.Key.font:  UIFont.preferredFont(forTextStyle: .headline)], for: UIControl.State.normal)
-        button.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:  UIColor.systemGray3], for: UIControl.State.disabled)
-        return button
-    }()
-    
     override func setupNavBars() {
         super.setupNavBars()
         let leftBarButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
@@ -81,17 +73,28 @@ class AddCounterViewController: BaseViewController, AddCounterViewControllerProt
         
         navigationItem.leftBarButtonItem = leftBarButton
         navigationItem.rightBarButtonItem = rightBarButton
+        
+        navigationController?.isToolbarHidden = true
+
     }
     
+    //MARK: - Cancel
     @objc func cancelAction(_ sender: Any?) {
         interactor?.didPressCancelButton()
     }
     
+    //MARK: - Save
     @objc func saveAction(_ sender: Any?) {
         interactor?.didPressSaveButton(with: textview.text)
     }
     
+    //MARK: - Examples
+    @IBAction func examplesButton(_ sender: UIButton) {
+        // To be implemented. Not enough time, sorry :)
+    }
+    
     // MARK: - AddCounterViewControllerProtocol
+    //MARK: - Save Feature
     func displayPlaceholder(_ text: String) {
         textview.text = text
         textview.textColor = text.isEmpty ? UIColor.label : UIColor.systemGray3
@@ -104,12 +107,22 @@ class AddCounterViewController: BaseViewController, AddCounterViewControllerProt
     }
     
     func displaySaveOption(_ enabled: Bool) {
-        rightBarButton.isEnabled = enabled
+        navigationItem.rightBarButtonItem?.isEnabled = enabled
     }
     
-    func displayCancelAction() {
+    func displayCountersListScene(with counter: Counter?) {
+        if let counter = counter {
+            delegate?.didCreateNew(counter)
+        }
         navigationController?.popViewController(animated: true)
     }
+    
+    func displayAlert(title: String, message: String, buttonTitle: String) {
+        UIAlertController.show(from: self, title: title, message: message, preferredButtonTitle: buttonTitle) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
 }
 
 extension AddCounterViewController: UITextViewDelegate {
@@ -123,4 +136,3 @@ extension AddCounterViewController: UITextViewDelegate {
     }
     
 }
-

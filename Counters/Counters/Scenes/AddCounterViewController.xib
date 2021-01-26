@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give it a name. Creative block? See examples." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3x-Nb-vtL">
-                    <rect key="frame" x="24" y="137" width="378" height="18"/>
+                    <rect key="frame" x="24" y="137" width="378" height="30"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                     <color key="textColor" red="0.53333333333333333" green="0.54509803921568623" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -58,16 +58,26 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ro9-xY-Opx">
+                    <rect key="frame" x="24" y="137" width="378" height="30"/>
+                    <connections>
+                        <action selector="examplesButton:" destination="-1" eventType="touchUpInside" id="FOr-NL-OzE"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="countersBackground"/>
             <constraints>
                 <constraint firstItem="O3x-Nb-vtL" firstAttribute="leading" secondItem="68z-Mk-M5v" secondAttribute="leading" constant="12" id="4mS-Xf-uWf"/>
+                <constraint firstItem="ro9-xY-Opx" firstAttribute="leading" secondItem="O3x-Nb-vtL" secondAttribute="leading" id="8NJ-ir-aWx"/>
                 <constraint firstItem="O3x-Nb-vtL" firstAttribute="top" secondItem="68z-Mk-M5v" secondAttribute="bottom" constant="13" id="Isn-d8-nYK"/>
                 <constraint firstItem="68z-Mk-M5v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="NlE-Po-E2Y"/>
                 <constraint firstItem="68z-Mk-M5v" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="f94-cg-nZf"/>
                 <constraint firstItem="O3x-Nb-vtL" firstAttribute="trailing" secondItem="68z-Mk-M5v" secondAttribute="trailing" id="hgX-Hf-zRa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="68z-Mk-M5v" secondAttribute="trailing" constant="12" id="rgq-e2-MOV"/>
+                <constraint firstItem="ro9-xY-Opx" firstAttribute="bottom" secondItem="O3x-Nb-vtL" secondAttribute="bottom" id="wR7-Xx-aoh"/>
+                <constraint firstItem="ro9-xY-Opx" firstAttribute="trailing" secondItem="O3x-Nb-vtL" secondAttribute="trailing" id="z2q-yv-eMZ"/>
+                <constraint firstItem="ro9-xY-Opx" firstAttribute="top" secondItem="O3x-Nb-vtL" secondAttribute="top" id="zMR-oj-3Io"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
         </view>

@@ -21,6 +21,8 @@ struct NoContentErrorStrings {
 
 
 struct AddCounterStrings {
+    static let subtitle = "Give it a name. Creative block? See examples."
+    static let accentSubtitle = "examples"
     static let textPlaceholder = "Cups of coffee"
 }
 

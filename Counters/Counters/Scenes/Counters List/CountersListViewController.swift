@@ -13,16 +13,16 @@ protocol CountersListViewControllerProtocol: class {
     func displayList(_ viewModel: [CountersCellViewModel])
     func displayListToolBar(title: String)
     func displayEditToolbar()
+    func displayEditButton(enabled: Bool)
     func switchDisplayMode(editing: Bool)
+    func displayAddCounterScene()
 }
 
-class CountersListViewController: BaseViewController, UISearchResultsUpdating, CountersListViewControllerProtocol {
+class CountersListViewController: BaseViewController, CountersListViewControllerProtocol {
     
     var interactor: CountersListInteractorProtocol?
     var router: CountersRouterProtocol?
     
-    
-    // warning for a title only OR action for title, message, button
     lazy var errorMessageView: ErrorMessageView = {
         let view = ErrorMessageView.initFromNib()
         return view
@@ -44,7 +44,7 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
         listView.delegate = self
         return listView
     }()
-    
+        
     private lazy var contentStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -61,27 +61,25 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
         
         title = "Counters"
         setupNavBars()
-        setupSearch()
         setupView()
+        setupSearch()
         interactor?.start()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.isToolbarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         DispatchQueue.main.async { [weak self] in
             self?.navigationController?.navigationBar.sizeToFit()
         }
-        
-//        refresh data
     }
     
     override func setupNavBars() {
         super.setupNavBars()
         
         navigationItem.leftBarButtonItem = editButtonItem
-        navigationController?.isToolbarHidden = false
         toolbarItems = customToolBar.items
     }
     
@@ -102,8 +100,6 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
         }
     }
     
-   
-    
     //MARK: - Edit Feature
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -114,7 +110,6 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
         interactor?.selectAllCounters()
     }
     
-    
     //MARK: - Search Feature
     private func setupSearch() {
         let searchController = UISearchController(searchResultsController: nil)
@@ -124,12 +119,10 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
         definesPresentationContext = true
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        // Search
-    }
-    
     //MARK: - Add Feature
-
+    func displayAddCounterScene() {
+        router?.showAddCountersScene(with: self)
+    }
     
     // MARK: - CountersListViewControllerProtocol
     // MARK: - Loading
@@ -151,13 +144,20 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
         showView(errorMessageView)
     }
     
-    // MARK: - List Counters
+    // MARK: - Listing Feature
+    var viewModel: [CountersCellViewModel] = []
+
     func displayList(_ viewModel: [CountersCellViewModel]) {
+        self.viewModel = viewModel
         listView.viewModel = viewModel
         showView(listView)
     }
     
-    // MARK: - Edit Mode
+    // MARK: - Edit Mode Feature
+    func displayEditButton(enabled: Bool) {
+        navigationItem.leftBarButtonItem?.isEnabled = enabled
+    }
+
     func switchDisplayMode(editing: Bool) {
         if editing == true {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select All", style: .plain, target: self, action: #selector(selectAllPressed(_:)))
@@ -171,23 +171,20 @@ class CountersListViewController: BaseViewController, UISearchResultsUpdating, C
     // MARK: - Toolbar
     func displayListToolBar(title: String) {
         customToolBar.toolbarState = .add(viewModel: ToolBarViewModel(toolbarTitle: title, leftAction: nil, righttAction: { [self] in
-            //  ADD  INTERACTOR
-            print("Add")
-            router?.showAddCountersScene()
+            interactor?.didPressAddButton()
         }))
-    }
-    func displayEditToolbar() {
-        customToolBar.toolbarState = .edit(viewModel: ToolBarViewModel(toolbarTitle: nil, leftAction: { [weak self] in
-            print("Delete")
-            self?.interactor?.deleteSelectedCounters()
-        }, righttAction: {
-            // share
-            print("Share")
-        }))
-            
     }
     
+    func displayEditToolbar() {
+        customToolBar.toolbarState = .edit(viewModel: ToolBarViewModel(toolbarTitle: nil, leftAction: { [weak self] in
+            self?.interactor?.deleteSelectedCounters()
+        }, righttAction: {
+            // not enough time to implement
+            print("Share")
+        }))
+    }
 }
+
 
 extension CountersListViewController: CountersListDelegate {
     func didStartRefreshing() {
@@ -204,4 +201,26 @@ extension CountersListViewController: CountersListDelegate {
 }
 
 
+extension CountersListViewController: AddCounterInteractorDelegate {
+    func didCreateNew(_ counter: Counter) {
+        interactor?.didCreateNew(counter)
+    }
+}
 
+
+extension CountersListViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    if let text = searchController.searchBar.text, !text.isEmpty {
+        filterContentForSearchText(text)
+    } else {
+        listView.viewModel = viewModel
+    }
+  }
+    
+    func filterContentForSearchText(_ searchText: String) {
+         let filteredResults = viewModel.filter { (viewModel) -> Bool in
+            return viewModel.title.lowercased().contains(searchText.lowercased())
+        }
+        listView.viewModel = filteredResults
+    }
+}
